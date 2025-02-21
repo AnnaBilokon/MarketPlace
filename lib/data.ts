@@ -8,7 +8,7 @@ export const companies: Company [] = [
 	  price: 500000,
 	  industry: "Technology",
 	  image: "/images/company1.jpg",
-	  seller: "John Doe",
+	  seller: "John Doe, Stockholm",
 	},
 	{
 	  id: 2,
@@ -17,7 +17,7 @@ export const companies: Company [] = [
 	  price: 750000,
 	  industry: "Energy",
 	  image: "/images/company2.jpg",
-	  seller: "Alice Smith",
+	  seller: "Alice Smith, Gävle",
 	},
 	{
 	  id: 3,
@@ -26,7 +26,7 @@ export const companies: Company [] = [
 	  price: 1200000,
 	  industry: "Technology",
 	  image: "/images/company3.jpg",
-	  seller: "Michael Johnson",
+	  seller: "Michael Johnson, Åre",
 	},
 	{
 	  id: 4,
@@ -35,7 +35,7 @@ export const companies: Company [] = [
 	  price: 300000,
 	  industry: "Food & Agriculture",
 	  image: "/images/company4.jpg",
-	  seller: "Sarah Wilson",
+	  seller: "Sarah Wilson, Norrköping",
 	},
 	{
 	  id: 5,
@@ -44,7 +44,7 @@ export const companies: Company [] = [
 	  price: 2000000,
 	  industry: "Automotive",
 	  image: "/images/company5.jpg",
-	  seller: "David Brown",
+	  seller: "David Brown, Stockholm",
 	},
 	{
 	  id: 6,
@@ -53,7 +53,7 @@ export const companies: Company [] = [
 	  price: 900000,
 	  industry: "Finance",
 	  image: "/images/company6.jpg",
-	  seller: "Emma Davis",
+	  seller: "Emma Davis, Malmö",
 	},
 	{
 	  id: 7,
@@ -62,7 +62,7 @@ export const companies: Company [] = [
 	  price: 1100000,
 	  industry: "Healthcare",
 	  image: "/images/company7.jpg",
-	  seller: "James White",
+	  seller: "James White, Kalmar",
 	},
 	{
 	  id: 8,
@@ -71,7 +71,7 @@ export const companies: Company [] = [
 	  price: 250000,
 	  industry: "Fashion",
 	  image: "/images/company8.jpg",
-	  seller: "Olivia Martin",
+	  seller: "Olivia Martin, Linköping",
 	},
 	{
 	  id: 9,
@@ -80,7 +80,7 @@ export const companies: Company [] = [
 	  price: 650000,
 	  industry: "Education",
 	  image: "/images/company9.jpg",
-	  seller: "William Lee",
+	  seller: "William Lee, Karlstad",
 	},
 	{
 	  id: 10,
@@ -89,7 +89,7 @@ export const companies: Company [] = [
 	  price: 5000000,
 	  industry: "Aerospace",
 	  image: "/images/company10.jpg",
-	  seller: "Sophia Anderson",
+	  seller: "Sophia Anderson, Stockholm",
 	},
   ];
   
