@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-export default function Container({
+function Container({
   children,
   className,
 }: {
@@ -14,3 +14,5 @@ export default function Container({
     </div>
   );
 }
+
+export default Container;
