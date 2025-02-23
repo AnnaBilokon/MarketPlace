@@ -26,7 +26,7 @@ const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grip-cols-1 sm:grid-cols-3 gap-4">
       {companies.map((company) => (
         <div
           key={company.name}
