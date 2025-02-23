@@ -23,7 +23,15 @@ function CompaniesContainer() {
           throw error;
         }
 
-        setCompanyData((prevData) => [...prevData, ...(data || [])]);
+        const uniqueSupabaseCompanies = data?.filter(
+          (value, index, self) =>
+            index === self.findIndex((t) => t.name === value.name)
+        );
+
+        const combinedData = [...companies, ...(uniqueSupabaseCompanies || [])];
+
+        setCompanyData(combinedData);
+        setFilteredCompanies(combinedData);
       } catch (err) {
         setError("Error fetching companies");
         console.error(err);
@@ -43,18 +51,13 @@ function CompaniesContainer() {
     return <p>{error}</p>;
   }
 
-  const uniqueCompanies = companyData.filter(
-    (value, index, self) =>
-      index === self.findIndex((t) => t.name === value.name)
-  );
-
   const handleFilter = (filterType: string, value: string | null) => {
     if (filterType === "reset" || !value) {
-      setFilteredCompanies(uniqueCompanies);
+      setFilteredCompanies(companyData);
       return;
     }
 
-    let updatedCompanies = [...uniqueCompanies];
+    let updatedCompanies = [...companyData];
 
     if (filterType === "price") {
       updatedCompanies.sort((a, b) =>
@@ -63,13 +66,13 @@ function CompaniesContainer() {
     }
 
     if (filterType === "industry") {
-      updatedCompanies = uniqueCompanies.filter(
+      updatedCompanies = filteredCompanies.filter(
         (company) => company.industry === value
       );
     }
 
     if (filterType === "keyword" && value) {
-      updatedCompanies = uniqueCompanies.filter(
+      updatedCompanies = filteredCompanies.filter(
         (company) =>
           company.name.toLowerCase().includes(value.toLowerCase()) ||
           company.description.toLowerCase().includes(value.toLowerCase())
