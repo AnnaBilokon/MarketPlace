@@ -1,4 +1,4 @@
-import CompanyListingForm from "./CompanyListingForm"; // Your existing company listing form component
+import CompanyListingForm from "./CompanyListingForm";
 
 interface CompanyListingModalProps {
   isOpen: boolean;
