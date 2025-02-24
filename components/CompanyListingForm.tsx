@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
+import { toast } from "sonner";
 
 const CompanyListingForm = ({ closeModal }: { closeModal: () => void }) => {
   const { user } = useAuth();
@@ -46,6 +47,8 @@ const CompanyListingForm = ({ closeModal }: { closeModal: () => void }) => {
       if (error) {
         throw error;
       }
+
+      toast("Company has been listed.");
 
       closeModal();
       window.location.reload();
