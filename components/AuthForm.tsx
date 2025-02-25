@@ -36,7 +36,16 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
       if (response?.error) throw new Error(response.error.message);
 
-      router.push("/");
+      const { data: session, error: sessionError } =
+        await supabase.auth.getSession();
+      if (sessionError) throw new Error(sessionError.message);
+
+      if (session) {
+        console.log("Session available after login:", session);
+        router.push("/");
+      } else {
+        throw new Error("Session not available after login.");
+      }
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError(err.message);
