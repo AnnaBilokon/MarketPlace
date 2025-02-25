@@ -85,7 +85,7 @@ function CompaniesContainer() {
 
   return (
     <>
-      <section className="mt-32">
+      <section id="companies" className="mt-32 ">
         <Separator className="mt-4" />
 
         <FilterBar onFilter={handleFilter} />
