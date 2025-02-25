@@ -1,10 +1,30 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import HeroImage from "../../public/Hero.jpg";
+import { useAuth } from "@/context/authContext";
+import { useRouter } from "next/navigation";
+import CompanyListingModal from "@/components/CompanyListingModal";
 
 export default function Hero() {
+  const { user } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
+
+  const handleSellCompanyClick = () => {
+    if (user) {
+      setIsModalOpen(true);
+    } else {
+      router.push("/login");
+    }
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
       <div>
@@ -22,18 +42,20 @@ export default function Hero() {
             size="lg"
             className="mt-10 text-lg w-56 bg-[#aacae6] hover:bg-[#EBF6FB] hover:border-[##EBF6FB] text-black"
           >
-            <Link href="/products">Explore</Link>
+            <Link href="#companies">Explore</Link>
           </Button>
           <Button
             asChild
             size="lg"
             className="mt-10 text-lg border-1 border-[#aacae6] w-56 hover:bg-black hover:text-white"
+            onClick={handleSellCompanyClick}
           >
-            <Link href="/products">Sell a Company</Link>
+            <Link href="/login">Sell a Company</Link>
           </Button>
         </div>
       </div>
       <Image src={HeroImage} alt="hero" className="rounded-md" />
+      <CompanyListingModal isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 }
