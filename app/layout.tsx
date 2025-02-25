@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <Navbar />
-          <Container className="py-20">{children}</Container>
+          <Container className="py-20 min-h-screen">{children}</Container>
           <Footer />
         </AuthProvider>
       </body>
