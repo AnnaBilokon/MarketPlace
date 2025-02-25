@@ -16,8 +16,6 @@ const CompanyListingForm = ({ closeModal }: { closeModal: () => void }) => {
     image: "",
   });
 
-  //   const modalRef = useRef<HTMLDivElement>(null);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCompany((prevState) => ({ ...prevState, [name]: value }));
