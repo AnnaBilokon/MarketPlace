@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Company } from "@/lib/types";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useAuth } from "@/context/authContext";
-
+import { supabase } from "@/lib/supabaseClient";
+import { toast } from "sonner";
 import Link from "next/link";
-import { registerInterest } from "@/app/actions";
 
 interface CompaniesListProps {
   companies: Company[];
@@ -13,16 +13,34 @@ interface CompaniesListProps {
 
 const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
   const { user } = useAuth();
-  const [feedback, setFeedback] = useState<string | null>(null);
+  console.log("User in frontend:", user);
 
-  const handleInterestClick = async (companyName: string) => {
-    if (!user?.email) {
-      setFeedback("You need to be logged in to express interest.");
-      return;
+  const handleExpressInterest = async (companyId: string | number) => {
+    try {
+      const { data } = await supabase.auth.getUser();
+      if (!data?.user) {
+        toast.error("You must be logged in to express interest.");
+        return;
+      }
+
+      const userId = data.user.id;
+      const { error } = await supabase.from("interests").insert([
+        {
+          user_id: userId,
+          company_id: companyId,
+        },
+      ]);
+
+      if (error) {
+        toast.error("Failed to express interest. Please try again.");
+        return;
+      }
+
+      toast.success("Interest expressed successfully!");
+    } catch (err) {
+      console.error("Error expressing interest:", err);
+      toast.error("An error occurred.");
     }
-
-    const response = await registerInterest(user.email, companyName);
-    setFeedback(response.message);
   };
 
   return (
@@ -60,7 +78,7 @@ const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
                   Buy
                 </Button>
                 <Button
-                  onClick={() => handleInterestClick(company.name)}
+                  onClick={() => handleExpressInterest(company.id)}
                   className="text-md border-1 border-[#aacae6] hover:border-2"
                 >
                   {" "}
@@ -78,9 +96,6 @@ const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
           </div>
         </div>
       ))}
-      {feedback && (
-        <p className="mt-4 text-center text-sm text-gray-700">{feedback}</p>
-      )}
     </div>
   );
 };
