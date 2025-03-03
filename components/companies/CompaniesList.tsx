@@ -15,6 +15,30 @@ const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
   const { user } = useAuth();
   console.log("User in frontend:", user);
 
+  const isValidUrl = (url: string) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const getImageSrc = (image: string) => {
+    // First, check if the URL is valid
+    if (isValidUrl(image)) {
+      return image;
+    }
+
+    // Then check if the image exists in the /public/images directory
+    if (image && image.startsWith("/images")) {
+      return image;
+    }
+
+    // Fallback to placeholder if neither condition is met
+    return "/images/placeholder.jpg";
+  };
+
   const handleExpressInterest = async (companyId: string | number) => {
     try {
       const { data } = await supabase.auth.getUser();
@@ -51,7 +75,7 @@ const CompaniesList: React.FC<CompaniesListProps> = ({ companies }) => {
           className="border p-4 rounded-lg shadow-sm flex flex-col"
         >
           <Image
-            src={company.image}
+            src={getImageSrc(company.image)}
             alt={company.name}
             width={300}
             height={300}
