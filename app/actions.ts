@@ -13,7 +13,7 @@ export async function registerInterest(companyId: string) {
   
 	  const { error: insertError } = await supabase
 		.from("interests")
-		.insert([{ user_id: userId, company_id: companyId }]); 
+		.insert([{ user_id: userId, company_id: companyId, user_email:userEmail}]); 
   
 	  if (insertError) throw new Error(insertError.message);
   
@@ -58,7 +58,7 @@ export async function getInterestedBuyers(sellerEmail: string) {
 
     const userIds = interests.map((interest) => interest.user_id);
     const { data: users, error: userError } = await supabase
-      .from("users")
+      .from("profiles")
       .select("id, email")
       .in("id", userIds);
 
