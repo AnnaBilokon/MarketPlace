@@ -7,11 +7,11 @@ This is a modern marketplace web app where users can browse, buy, and sell compa
 ## Features 💫
 
 </br>
-🚀 User Authentication – Secure login & signup with Supabase Auth.
-🏢 Company Listings – Browse and filter companies by price, industry, and keywords.
-📢 Sell a Company – List a company with key details like name, price, industry, and seller info.
-💼 Buyer Interest – Buyers can express interest in a company, and sellers can track potential buyers.
-🎨 Modern UI & UX – Responsive design with TailwindCSS and ShadCN/UI.
+🚀 User Authentication – Secure login & signup with Supabase Auth. <br/>
+🏢 Company Listings – Browse and filter companies by price, industry, and keywords. <br/>
+📢 Sell a Company – List a company with key details like name, price, industry, and seller info. <br/>
+💼 Buyer Interest – Buyers can express interest in a company, and sellers can track potential buyers. <br/>
+🎨 Modern UI & UX – Responsive design with TailwindCSS and ShadCN/UI. <br/>
 🚀 Deployed on Vercel – Fully hosted and accessible online.
 
 ## Installation 💻
