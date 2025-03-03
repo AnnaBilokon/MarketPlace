@@ -30,6 +30,15 @@ const CompanyListingForm = ({ closeModal }: { closeModal: () => void }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const isValidUrl = (url: string) => {
+      try {
+        new URL(url); // If URL is invalid, this will throw an error
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
     try {
       const { error } = await supabase.from("companies").insert([
         {
@@ -38,7 +47,9 @@ const CompanyListingForm = ({ closeModal }: { closeModal: () => void }) => {
           price: company.price,
           industry: company.industry,
           seller: user?.email,
-          image: company.image || "",
+          image: isValidUrl(company.image)
+            ? company.image
+            : "/images/placeholder.jpg",
         },
       ]);
 
